@@ -4,7 +4,15 @@ import BlogPostCard from '../components/BlogPostCard';
 import '../styles/global.css';
 
 const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort(
+
+// Filter drafts in production, show all in dev
+const isDev = import.meta.env.DEV;
+const visiblePosts = allPosts.filter(post => {
+  if (isDev) return true; // Show all posts in dev mode
+  return !post.data.draft; // Hide drafts in production
+});
+
+const sortedPosts = visiblePosts.sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 ---
@@ -15,17 +23,26 @@ const sortedPosts = allPosts.sort(
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Sam Hesson's Blog" href="/rss.xml" />
     <meta name="description" content="Sam Hesson's personal blog on web development, technology, and more" />
     <title>Sam Hesson - Blog</title>
   </head>
-  <body class="bg-gray-50 dark:bg-gray-900">
+  <body class="bg-warm-sand-50 dark:bg-dark-bg-primary">
     <div class="min-h-screen">
-      <header class="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      <header class="bg-warm-sand-100 dark:bg-dark-bg-secondary border-b border-driftwood-200 dark:border-dark-border rounded-b-[24px] shadow-md">
+        <nav class="max-w-6xl mx-auto px-4 pt-4 flex justify-end gap-6">
+          <a href="/" class="text-lg font-bold text-living-green-500 dark:text-living-green-300">
+            Home
+          </a>
+          <a href="/about" class="text-lg font-bold text-void-400 dark:text-warm-sand-100 hover:text-living-green-500 dark:hover:text-living-green-300 transition-colors">
+            About
+          </a>
+        </nav>
         <div class="max-w-6xl mx-auto px-4 py-16 text-center">
-          <h1 class="text-5xl md:text-6xl font-bold mb-4 text-gray-900 dark:text-white">
+          <h1 class="text-5xl md:text-6xl font-bold mb-4 text-void-400 dark:text-warm-sand-100" style="letter-spacing: -0.02em;">
             Sam Hesson
           </h1>
-          <p class="text-xl text-gray-600 dark:text-gray-300">
+          <p class="text-xl text-void-200 dark:text-driftwood-200">
             Thoughts on web development, technology, and more
           </p>
         </div>
@@ -33,7 +50,7 @@ const sortedPosts = allPosts.sort(
 
       <main class="max-w-6xl mx-auto px-4 py-12">
         <div class="mb-8">
-          <h2 class="text-3xl font-bold text-gray-900 dark:text-white">Recent Posts</h2>
+          <h2 class="text-3xl font-bold text-void-400 dark:text-warm-sand-100">Recent Posts</h2>
         </div>
 
         <div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -45,19 +62,20 @@ const sortedPosts = allPosts.sort(
               pubDate={post.data.pubDate}
               slug={post.slug}
               tags={post.data.tags}
+              draft={post.data.draft}
             />
           ))}
         </div>
 
         {sortedPosts.length === 0 && (
           <div class="text-center py-12">
-            <p class="text-gray-600 dark:text-gray-400">No posts yet. Check back soon!</p>
+            <p class="text-void-200 dark:text-driftwood-200">No posts yet. Check back soon!</p>
           </div>
         )}
       </main>
 
-      <footer class="bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 mt-16">
-        <div class="max-w-6xl mx-auto px-4 py-8 text-center text-gray-600 dark:text-gray-400">
+      <footer class="bg-warm-sand-100 dark:bg-dark-bg-secondary border-t border-driftwood-200 dark:border-dark-border mt-16 rounded-t-[24px]">
+        <div class="max-w-6xl mx-auto px-4 py-8 text-center text-void-200 dark:text-driftwood-200">
           <p>&copy; {new Date().getFullYear()} Sam Hesson. All rights reserved.</p>
         </div>
       </footer>
