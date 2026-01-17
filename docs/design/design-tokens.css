@@ -2,6 +2,11 @@
  * Design Tokens
  * Organic Modernism Brand Aesthetic
  *
+ * Typography: Inter (variable font with optical sizing)
+ * - Single font system for simplicity and DX
+ * - Optimized for all use cases (headlines, body, UI)
+ * - Free via Google Fonts, zero licensing complexity
+ *
  * Import this file or copy values into your Tailwind config
  */
 

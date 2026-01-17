@@ -194,18 +194,40 @@ Maintain warmth in dark themes:
 
 ### 4.1 Font Selection
 
-**Primary Font Family:**
-Humanist sans-serif with warm, friendly characteristics
+**Official Typography System**
 
-*Recommended:*
-- Inter (with optical sizing)
-- Satoshi
-- Plus Jakarta Sans
-- Outfit
+We use a single font family for simplicity, consistency, and optimal developer experience:
 
-**Monospace (for code):**
+**Primary Font:** **Inter** (Variable font with optical sizing)
+
+**Why Inter:**
+- ✅ Single font for all use cases (headlines, body, UI)
+- ✅ Variable font with optical sizing (optimizes automatically by size)
+- ✅ Humanist warmth without being overly friendly
+- ✅ Exceptional readability at all sizes
+- ✅ Free and open source (Google Fonts)
+- ✅ Zero licensing or hosting complexity
+- ✅ Industry standard with proven track record
+
+**Monospace (for code blocks):**
 - JetBrains Mono
 - Fira Code
+
+**Implementation:**
+```html
+<!-- Google Fonts Import -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+```
+
+```css
+/* Enable optical sizing for automatic optimization */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-optical-sizing: auto;
+}
+```
 
 ### 4.2 Type Scale
 

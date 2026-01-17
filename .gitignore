@@ -22,3 +22,22 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# VSCode
+.vscode/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Typography testing (optional - remove if you want to commit screenshots)
+public/typography-test/
+typography-screenshot.js
+
+# Cloudflare
+.wrangler/
+wrangler.toml
+
+# Local development
+*.local
