@@ -1,5 +1,13 @@
-One-Pager: Agentic Full-Stack Software Engineering Interview Format
-Objective:
+---
+title: "AI-Native Tech Interview: A Full-Stack Engineering Approach"
+description: "Transforming software engineering interviews into real-world, AI-native challenges that emphasize compound engineering and practical problem-solving"
+pubDate: 2026-01-16
+tags: ["interviews", "ai", "engineering", "full-stack"]
+---
+
+# One-Pager: Agentic Full-Stack Software Engineering Interview Format
+
+## Objective:
 To transform the software engineering interview into a real-world, AI-native, full-stack challenge that emphasizes compound engineering, meta-prompting, and practical problem-solving.
 Overview of the Interview Process:
 Real-World PR Task:
