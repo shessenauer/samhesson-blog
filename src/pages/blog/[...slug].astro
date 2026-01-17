@@ -3,7 +3,15 @@ import { getCollection } from 'astro:content';
 import BlogPost from '../../layouts/BlogPost.astro';
 
 export async function getStaticPaths() {
-  const posts = await getCollection('blog');
+  const allPosts = await getCollection('blog');
+
+  // Filter drafts in production, show all in dev
+  const isDev = import.meta.env.DEV;
+  const posts = allPosts.filter(post => {
+    if (isDev) return true; // Show all posts in dev mode
+    return !post.data.draft; // Hide drafts in production
+  });
+
   return posts.map((post) => ({
     params: { slug: post.slug },
     props: post,
@@ -14,6 +22,6 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
+<BlogPost {...post.data} rawContent={post.body}>
   <Content />
 </BlogPost>
