@@ -1,10 +1,6 @@
-# Astro Starter Kit: Minimal
+# Sam Hesson's Blog
 
-```sh
-npm create astro@latest -- --template minimal
-```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Personal blog built with Astro, Tailwind CSS, and Framer Motion. Deployed on Cloudflare Pages.
 
 ## 🚀 Project Structure
 
