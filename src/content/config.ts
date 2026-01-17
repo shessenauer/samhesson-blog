@@ -11,14 +11,14 @@ const blog = defineCollection({
 
     // SEO fields
     excerpt: z.string().optional(),
-    canonicalUrl: z.string().url().optional(),
+    canonicalUrl: z.string().url().nullish(),
     metaKeywords: z.array(z.string()).optional(),
 
     // Content organization
     author: z.string().default('Sam Hesson'),
     category: z.string().optional(),
     series: z.string().optional(),
-    seriesOrder: z.number().optional(),
+    seriesOrder: z.number().nullish(),
     relatedPosts: z.array(z.string()).optional(),
 
     // Media & presentation
@@ -31,7 +31,7 @@ const blog = defineCollection({
 
     // Metadata
     lastModified: z.coerce.date().optional(),
-    estimatedReadingTime: z.number().optional(), // minutes (for pre-calculation)
+    estimatedReadingTime: z.number().nullish(), // minutes (for pre-calculation)
   }),
 });
 
