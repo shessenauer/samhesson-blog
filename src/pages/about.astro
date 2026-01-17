@@ -1,32 +1,14 @@
 ---
-import '../styles/global.css';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate" type="application/rss+xml" title="Sam Hesson's Blog" href="/rss.xml" />
-    <meta name="description" content="About Sam Hesson - Software engineer writing about web development, technology, and more" />
-    <meta name="author" content="Sam Hesson" />
-    <title>About - Sam Hesson</title>
-  </head>
-  <body class="bg-warm-sand-50 dark:bg-dark-bg-primary">
-    <div class="min-h-screen">
-      <nav class="bg-warm-sand-100 dark:bg-dark-bg-secondary border-b border-driftwood-200 dark:border-dark-border rounded-b-[24px]">
-        <div class="max-w-4xl mx-auto px-4 py-4 flex gap-6">
-          <a href="/" class="text-lg font-bold text-void-400 dark:text-warm-sand-100 hover:text-living-green-500 dark:hover:text-living-green-300 transition-colors">
-            Home
-          </a>
-          <a href="/about" class="text-lg font-bold text-living-green-500 dark:text-living-green-300">
-            About
-          </a>
-        </div>
-      </nav>
-
-      <main class="max-w-4xl mx-auto px-4 py-12">
+<BaseLayout
+  title="About - Sam Hesson"
+  description="About Sam Hesson - Software engineer writing about web development, technology, and more"
+  currentPage="about"
+  variant="minimal"
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
         <article>
           <header class="mb-12">
             <h1 class="text-4xl md:text-5xl font-bold mb-4 text-void-400 dark:text-warm-sand-100" style="letter-spacing: -0.02em;">
@@ -38,7 +20,7 @@ import '../styles/global.css';
           </header>
 
           <div class="prose prose-lg dark:prose-invert max-w-none space-y-6">
-            <section class="bg-warm-sand-100 dark:bg-dark-bg-secondary p-8 rounded-[24px] border border-driftwood-300 dark:border-driftwood-300/30 shadow-md mb-8">
+            <section class="bg-gradient-to-br from-warm-sand-100 to-natural-wood-100/30 dark:from-dark-bg-secondary dark:to-dark-bg-primary p-10 rounded-[28px] border-2 border-natural-wood-300/50 dark:border-dark-border shadow-lg mb-8">
               <h2 class="text-3xl font-bold mb-4 text-void-400 dark:text-warm-sand-100" style="letter-spacing: -0.02em;">
                 Background & Expertise
               </h2>
@@ -114,13 +96,5 @@ import '../styles/global.css';
             </section>
           </div>
         </article>
-      </main>
-
-      <footer class="bg-warm-sand-100 dark:bg-dark-bg-secondary border-t border-driftwood-200 dark:border-dark-border mt-16 rounded-t-[24px]">
-        <div class="max-w-4xl mx-auto px-4 py-8 text-center text-void-200 dark:text-driftwood-200">
-          <p>&copy; {new Date().getFullYear()} Sam Hesson. All rights reserved.</p>
-        </div>
-      </footer>
-    </div>
-  </body>
-</html>
+  </div>
+</BaseLayout>

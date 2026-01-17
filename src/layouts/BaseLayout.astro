@@ -1,0 +1,137 @@
+---
+import '../styles/global.css';
+import OrganicBlob from '../components/OrganicBlob';
+import LeafDecoration from '../components/LeafDecoration';
+import ProfileCard from '../components/ProfileCard';
+
+interface Props {
+  title: string;
+  description: string;
+  showProfileCard?: boolean;
+  variant?: 'default' | 'minimal'; // default has full header, minimal has simple nav
+  currentPage?: 'home' | 'about' | 'blog';
+}
+
+const {
+  title,
+  description,
+  showProfileCard = true,
+  variant = 'default',
+  currentPage
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate" type="application/rss+xml" title="Sam Hesson's Blog" href="/rss.xml" />
+    <meta name="description" content={description} />
+    <meta name="author" content="Sam Hesson" />
+    <title>{title}</title>
+  </head>
+  <body class="bg-warm-sand-200 dark:bg-dark-bg-primary">
+    <div class="min-h-screen relative overflow-hidden">
+      <!-- Organic background decorations -->
+      <div class="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 pointer-events-none">
+        <OrganicBlob client:load variant="primary" size="lg" className="opacity-10" />
+      </div>
+      <div class="absolute bottom-20 left-0 -translate-x-1/3 pointer-events-none">
+        <OrganicBlob client:load variant="accent" size="md" className="opacity-10" />
+      </div>
+      <div class="absolute top-1/2 left-1/4 pointer-events-none">
+        <LeafDecoration client:load className="opacity-20" />
+      </div>
+
+      {variant === 'default' ? (
+        <header class="bg-gradient-to-br from-natural-wood-100 to-warm-sand-100 dark:from-dark-bg-secondary dark:to-dark-bg-primary border-b-2 border-natural-wood-300 dark:border-dark-border rounded-b-[32px] shadow-lg relative overflow-hidden">
+          <!-- Header background blob -->
+          <div class="absolute -top-20 -right-20 pointer-events-none">
+            <OrganicBlob client:load variant="secondary" size="lg" className="opacity-5" />
+          </div>
+
+          <nav class="max-w-6xl mx-auto px-4 pt-6 flex justify-end gap-8 relative z-10">
+            <a
+              href="/"
+              class:list={[
+                "text-lg font-semibold transition-colors",
+                currentPage === 'home'
+                  ? "text-living-green-500 dark:text-living-green-300"
+                  : "text-void-300 dark:text-warm-sand-100 hover:text-living-green-500 dark:hover:text-living-green-300"
+              ]}
+            >
+              Home
+            </a>
+            <a
+              href="/about"
+              class:list={[
+                "text-lg font-semibold transition-colors",
+                currentPage === 'about'
+                  ? "text-living-green-500 dark:text-living-green-300"
+                  : "text-void-300 dark:text-warm-sand-100 hover:text-living-green-500 dark:hover:text-living-green-300"
+              ]}
+            >
+              About
+            </a>
+          </nav>
+          <div class="max-w-6xl mx-auto px-4 py-20 text-center relative z-10">
+            <h1 class="text-6xl md:text-7xl font-bold mb-6 text-void-400 dark:text-warm-sand-100">
+              Sam Hesson
+            </h1>
+            <p class="text-2xl text-void-200 dark:text-driftwood-200 max-w-2xl mx-auto leading-relaxed">
+              Thoughts on web development, technology, and more
+            </p>
+          </div>
+        </header>
+      ) : (
+        <nav class="bg-gradient-to-br from-natural-wood-100 to-warm-sand-100 dark:from-dark-bg-secondary dark:to-dark-bg-primary border-b-2 border-natural-wood-300 dark:border-dark-border rounded-b-[32px] shadow-lg">
+          <div class="max-w-4xl mx-auto px-4 py-4 flex gap-6">
+            <a
+              href="/"
+              class:list={[
+                "text-lg font-bold transition-colors",
+                currentPage === 'home'
+                  ? "text-living-green-500 dark:text-living-green-300"
+                  : "text-void-400 dark:text-warm-sand-100 hover:text-living-green-500 dark:hover:text-living-green-300"
+              ]}
+            >
+              Home
+            </a>
+            <a
+              href="/about"
+              class:list={[
+                "text-lg font-bold transition-colors",
+                currentPage === 'about'
+                  ? "text-living-green-500 dark:text-living-green-300"
+                  : "text-void-400 dark:text-warm-sand-100 hover:text-living-green-500 dark:hover:text-living-green-300"
+              ]}
+            >
+              About
+            </a>
+          </div>
+        </nav>
+      )}
+
+      {showProfileCard && (
+        <div class="max-w-6xl mx-auto px-4 mt-8">
+          <ProfileCard client:load />
+        </div>
+      )}
+
+      <main>
+        <slot />
+      </main>
+
+      <footer class="bg-gradient-to-br from-natural-wood-100 to-driftwood-100 dark:from-dark-bg-secondary dark:to-dark-bg-primary border-t-2 border-natural-wood-300 dark:border-dark-border mt-20 rounded-t-[32px] shadow-lg relative overflow-hidden">
+        <div class="absolute -bottom-10 -left-10 pointer-events-none">
+          <OrganicBlob client:load variant="accent" size="md" className="opacity-5" />
+        </div>
+        <div class="max-w-6xl mx-auto px-4 py-12 text-center text-void-300 dark:text-driftwood-200 relative z-10">
+          <p class="text-lg">&copy; {new Date().getFullYear()} Sam Hesson. All rights reserved.</p>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
